@@ -6,6 +6,7 @@
 - axios
 
 ### Deployment
+- Install dependencies using `composer install`
 - Copy `.env.example` to `.env`
 - Setup database and update db credentials in `.env`
 - Run Migration `php artisan migrate`
