@@ -1,5 +1,6 @@
 <?php
 
+use App\Activity;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
@@ -16,4 +17,18 @@ use Illuminate\Support\Facades\Artisan;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
+})->describe('Display an inspiring quote');
+
+Artisan::command('fetch-emails', function () {
+    $this->info("fetching emails from gmail... This may take a few time to complete");
+    $emailService = new \App\Services\SMTPService();
+    $emailService->storeEmailsToDatabase();
+    Activity::create(
+        [
+            'activity_type' => 'SYSTEM',
+            'activity' => 'Inbox synced',
+        ]
+    );
+    $this->info("Process has been completed");
+
 })->describe('Display an inspiring quote');
