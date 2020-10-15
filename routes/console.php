@@ -19,7 +19,7 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
 
-Artisan::command('fetch-emails', function () {
+Artisan::command('inbox:fetch-emails', function () {
     $this->info("fetching emails from gmail... This may take a few time to complete");
     $emailService = new \App\Services\SMTPService();
     $emailService->storeEmailsToDatabase();
