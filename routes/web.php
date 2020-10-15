@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Auth::routes();
+
+Route::get('/', 'EmailController@index')->name('home');
+Route::delete('/email/{email}', 'EmailController@delete')->name('delete_email');
+Route::get('/activities', 'ActivityController@index')->name('activities');
+
+
